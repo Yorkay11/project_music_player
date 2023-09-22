@@ -7,7 +7,7 @@ import { logo } from '../assets';
 
 const links = [
   { name: 'Live', to: '/', icon: HiPlay },
-  { name: 'Discover', to: 'Decouverte', icon: HiOutlineHome },
+  { name: 'Explorer', to: 'Decouverte', icon: HiOutlineHome },
   { name: 'Podcasts', to: '/Podcasts', icon: HiOutlinePhotograph },
   { name: 'Top journalistes', to: '/Top-journalistes', icon: HiOutlineUserGroup },
   { name: 'Top episodes', to: '/Top-episodes', icon: HiOutlineHashtag },
