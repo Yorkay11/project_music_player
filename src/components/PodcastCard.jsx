@@ -5,21 +5,24 @@ import { useDispatch } from 'react-redux';
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 
-const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
+const PodcastCard = ({ podcast, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
 
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
+//   const handlePauseClick = () => {
+//     dispatch(playPause(false));
+//   };
 
-  const handlePlayClick = () => {
-    dispatch(setActiveSong({ song, data, i }));
-    dispatch(playPause(true));
-  };
+//   const handlePlayClick = () => {
+//     dispatch(setActiveSong({ song, data, i }));
+//     dispatch(playPause(true));
+//   };
+
+    // console.log(podcast);
+
   return (
     <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
       <div className="relative w-full h-56 group">
-        <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.Titre === song.Titre ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
+        {/* <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.Titre === song.Titre ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
           <PlayPause
             isPlaying={isPlaying}
             activeSong={activeSong}
@@ -27,19 +30,19 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
             handlePause={handlePauseClick}
             handlePlay={handlePlayClick}
           />
-        </div>
-        <img alt="song_img" src={song?.IdPodcast?.Photo?.url} className="w-full h-full rounded-lg" />
+        </div> */}
+        <img alt="song_img" src={podcast?.Photo?.url} className="w-full h-full rounded-lg" />
       </div>
 
       <div className="mt-4 flex flex-col">
         <p className="font-semibold text-lg text-white truncate">
-          <Link to={`/Episode/${song?.objectId}`}>
-            {song.Titre}
+          <Link to={`/Podcast/${podcast.objectId}`}>
+            {podcast?.Titre}
           </Link>
         </p>
         <p className="text-sm truncate text-gray-300 mt-1">
-          <Link to={song.artists ? `/Journalistes/${song?.artists[0]?.adamid}` : '/Top-journalistes'}>
-            {song.Description}
+          <Link to={podcast.artists ? `/Journalistes/${podcast?.artists[0]?.adamid}` : '/Top-journalistes'}>
+            {podcast?.Description}
           </Link>
         </p>
       </div>
@@ -47,4 +50,4 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   );
 };
 
-export default SongCard;
+export default PodcastCard;

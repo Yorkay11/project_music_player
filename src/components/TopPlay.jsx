@@ -7,50 +7,56 @@ import { FreeMode } from 'swiper';
 
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
-import { useGetTopChartsQuery } from '../redux/services/shazamCore';
+import { useGetEpisodesQuery, useGetJournalistesQuery } from '../redux/services/shazamCore';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => (
-  <div className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${activeSong?.title === song?.title ? 'bg-[#4c426e]' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
-    <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
-    <div className="flex-1 flex flex-row justify-between items-center">
-      <img className="w-20 h-20 rounded-lg" src={song?.images?.coverart} alt={song?.title} />
-      <div className="flex-1 flex flex-col justify-center mx-3">
-        <Link to={`/songs/${song.key}`}>
-          <p className="text-xl font-bold text-white">
-            {song?.title}
-          </p>
-        </Link>
-        <Link to={`/artists/${song?.artists[0].adamid}`}>
-          <p className="text-base text-gray-300 mt-1">
-            {song?.subtitle}
-          </p>
-        </Link>
+const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => {
+
+  return (
+    <div className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${activeSong?.Titre === song?.Titre ? 'bg-[#4c426e]' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
+      <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
+      <div className="flex-1 flex flex-row justify-between items-center">
+        <img className="w-20 h-20 rounded-lg" src={song?.IdPodcast?.Photo?.url} alt={song?.Titre} />
+        <div className="flex-1 flex flex-col justify-center mx-3">
+          <Link to={`/Episode/${song.objectId}`}>
+            <p className="text-xl font-bold text-white">
+              {song?.Titre}
+            </p>
+          </Link>
+          <Link to={`/`}>
+          {/* <Link to={`/Journalistes/${song?.artists[0].adamid}`}> */}
+            <p className="text-base text-gray-300 mt-1">
+              {song?.Description}
+            </p>
+          </Link>
+        </div>
       </div>
+      <PlayPause
+        isPlaying={isPlaying}
+        activeSong={activeSong}
+        song={song}
+        handlePause={handlePauseClick}
+        handlePlay={handlePlayClick}
+      />
     </div>
-    <PlayPause
-      isPlaying={isPlaying}
-      activeSong={activeSong}
-      song={song}
-      handlePause={handlePauseClick}
-      handlePlay={handlePlayClick}
-    />
-  </div>
-);
+  );
+} 
 
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartsQuery();
+  const { data } = useGetEpisodesQuery();
+  const { data: journaliste } = useGetJournalistesQuery();
   const divRef = useRef(null);
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   });
 
-  const topPlays = data?.slice(0, 5);
+  const topPlays = data && data.results?.slice(0, 5);
+  const topJournalistes = journaliste && journaliste.results?.slice(0, 5);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -65,9 +71,9 @@ const TopPlay = () => {
     <div ref={divRef} className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col">
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl">Top Charts</h2>
-          <Link to="/top-charts">
-            <p className="text-gray-300 text-base cursor-pointer">See more</p>
+          <h2 className="text-white font-bold text-2xl">Top Episodes</h2>
+          <Link to="/Top-episodes">
+            <p className="text-gray-300 text-base cursor-pointer">Voir Plus</p>
           </Link>
         </div>
 
@@ -88,30 +94,35 @@ const TopPlay = () => {
 
       <div className="w-full flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl">Top Artists</h2>
-          <Link to="/top-artists">
-            <p className="text-gray-300 text-base cursor-pointer">See more</p>
+          <h2 className="text-white font-bold text-2xl">Top Journalistes</h2>
+          <Link to="/">
+          {/* <Link to="/Top-journalistes"> */}
+            <p className="text-gray-300 text-base cursor-pointer">Voir Plus</p>
           </Link>
         </div>
 
         <Swiper
           slidesPerView="auto"
-          spaceBetween={15}
+          spaceBetween={10}
           freeMode
           centeredSlides
           centeredSlidesBounds
           modules={[FreeMode]}
-          className="mt-4"
+          className="mt-4 w-full"
         >
-          {topPlays?.slice(0, 5).map((artist) => (
+          {topJournalistes?.map((artist) => (
             <SwiperSlide
-              key={artist?.key}
+              key={artist?.objectId}
               style={{ width: '25%', height: 'auto' }}
-              className="shadow-lg rounded-full animate-slideright"
+              className=" rounded-full animate-slideright"
             >
-              <Link to={`/artists/${artist?.artists[0].adamid}`}>
-                <img src={artist?.images?.background} alt="Name" className="rounded-full w-full object-cover" />
+              <Link to={`/Journalistes/${artist?.objectId}`}>
+                <img src={artist?.Photo?.url} alt="Name" className="rounded-full object-cover" style={{
+                  width: '100px',
+                  height: '100px'
+                }}/>
               </Link>
+
             </SwiperSlide>
           ))}
         </Swiper>

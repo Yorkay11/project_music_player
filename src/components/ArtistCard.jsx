@@ -1,19 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ArtistCard = ({ track }) => {
   const navigate = useNavigate();
 
   return (
-    <div
+    <Link
       className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
-      onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
+      to={`/Journalistes/${track?.objectId}`}
     >
-      <img alt="song_img" src={track?.images?.coverart} className="w-full h-56 rounded-lg" />
+      <img alt="song_img" src={track?.Photo?.url} className="w-56 h-56 rounded-lg object-cover" />
       <p className="mt-4 font-semibold text-lg text-white truncate">
-        {track?.subtitle}
+        {track?.Nom}
       </p>
-    </div>
+    </Link>
   );
 };
 

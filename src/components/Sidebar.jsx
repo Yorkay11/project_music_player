@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HiOutlineHashtag, HiOutlineHome, HiOutlineMenu, HiOutlinePhotograph, HiOutlineUserGroup } from 'react-icons/hi';
+import { HiOutlineHashtag, HiOutlineHome, HiOutlineMenu, HiOutlinePhotograph, HiOutlineUserGroup, HiPlay } from 'react-icons/hi';
 import { RiCloseLine } from 'react-icons/ri';
 
 import { logo } from '../assets';
 
 const links = [
-  { name: 'Discover', to: '/', icon: HiOutlineHome },
-  { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
-  { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
-  { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  { name: 'Live', to: '/', icon: HiPlay },
+  { name: 'Discover', to: 'Decouverte', icon: HiOutlineHome },
+  { name: 'Podcasts', to: '/Podcasts', icon: HiOutlinePhotograph },
+  { name: 'Top journalistes', to: '/Top-journalistes', icon: HiOutlineUserGroup },
+  { name: 'Top episodes', to: '/Top-episodes', icon: HiOutlineHashtag },
 ];
 
 const NavLinks = ({ handleClick }) => (
@@ -34,7 +35,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#191624]">
-        <img src={logo} alt="logo" className="w-full h-14 object-contain" />
+        <img src={logo} alt="logo" className="w-20 h-20 object-stretch rounded-full justify-center" />
         <NavLinks />
       </div>
 
@@ -48,7 +49,7 @@ const Sidebar = () => {
       </div>
 
       <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483D8B] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
-        <img src={logo} alt="logo" className="w-full h-14 object-contain" />
+        <img src={logo} alt="logo" className="w-14 h-14 object-stretch rounded-full justify-center" />
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
       </div>
     </>
