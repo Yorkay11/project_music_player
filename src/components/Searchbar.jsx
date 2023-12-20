@@ -14,9 +14,9 @@ const Searchbar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off" className="p-2 text-gray-400 focus-within:text-gray-600">
+    <form onSubmit={handleSubmit} autoComplete="off" className="p-2 text-gray-400 focus-within:text-gray-600 t-[5vh]">
       <label htmlFor="search-field" className="sr-only">
-        Search all files
+        Rechercher
       </label>
       <div className="flex flex-row justify-start items-center">
         <FiSearch aria-hidden="true" className="w-5 h-5 ml-4" />

@@ -40,7 +40,7 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile sidebar */}
-      <div className="absolute md:hidden block top-6 right-3">
+      <div className="absolute md:hidden block top-6 right-3 sm:mt-[5vh]">
         {!mobileMenuOpen ? (
           <HiOutlineMenu className="w-6 h-6 mr-2 text-white" onClick={() => setMobileMenuOpen(true)} />
         ) : (
@@ -48,7 +48,7 @@ const Sidebar = () => {
         )}
       </div>
 
-      <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483D8B] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
+      <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483D8B] backdrop-blur-lg z-10 p-6 pt-[8vh] md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
         <img src={logo} alt="logo" className="w-14 h-14 object-stretch rounded-full justify-center" />
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
       </div>
