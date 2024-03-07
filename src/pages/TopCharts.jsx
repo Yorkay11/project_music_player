@@ -9,7 +9,7 @@ const TopCharts = () => {
   // const { data, isFetching, error } = useGetTopChartsQuery();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
-  if (isFetching) return <Loader Titre="Loading Top episodes" />;
+  if (isFetching) return <Loader Titre="Chargement des Top episodes" />;
 
   if (error) return <Error />;
 

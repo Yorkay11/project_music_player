@@ -41,10 +41,10 @@ const SongDetails = () => {
         <div className="mt-5">
           {songData
             ? (
-              <p className="text-gray-400 text-base my-1">{songData?.results[0].Description}</p>
+              <p className="text-gray-400 text-sm my-1">{songData?.results[0].Description}</p>
             )
             : (
-              <p className="text-gray-400 text-base my-1">Sorry, No lyrics found!</p>
+              <p className="text-gray-400 text-sm my-1">Sorry, No lyrics found!</p>
             )}
         </div>
       </div>

@@ -22,7 +22,7 @@ const ArtistDetails = () => {
 
 
 
-  if (isFetchingArtistDetails || isFetchingPodcastDatas) return <Loader Titre="Loading artist details..." />;
+  if (isFetchingArtistDetails || isFetchingPodcastDatas) return <Loader Titre="Chargement des informations du journaliste..." />;
 
   if (error) return <Error />;
 
@@ -51,10 +51,10 @@ const ArtistDetails = () => {
         <div className="mt-5">
           {artistData
             ? (
-              <p className="text-gray-400 text-base my-1">{artistData?.results[0]?.Description}</p>
+              <p className="text-gray-400 text-sm my-1">{artistData?.results[0]?.Description}</p>
             )
             : (
-              <p className="text-gray-400 text-base my-1">Navré, pas d'épisode trouvé</p>
+              <p className="text-gray-400 text-sm my-1">Navré, pas d'épisode trouvé</p>
             )}
         </div>
       </div>

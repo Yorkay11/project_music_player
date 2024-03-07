@@ -16,18 +16,18 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
 
   return (
     <div className={`w-full flex flex-row items-center hover:bg-[#293FAC] ${activeSong?.Titre === song?.Titre ? 'bg-[#293FAC]' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
-      <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
+      <h3 className="font-bold text-sm text-white mr-3">{i + 1}.</h3>
       <div className="flex-1 flex flex-row justify-between items-center">
         <img className="w-20 h-20 rounded-lg" src={song?.IdPodcast?.Photo?.url} alt={song?.Titre} />
         <div className="flex-1 flex flex-col justify-center mx-3">
           <Link to={`/Episode/${song.objectId}`}>
-            <p className="text-xl font-bold text-white">
+            <p className="text-lg font-semibold text-white">
               {song?.Titre}
             </p>
           </Link>
           <Link to={`/`}>
           {/* <Link to={`/Journalistes/${song?.artists[0].adamid}`}> */}
-            <p className="text-base text-gray-300 mt-1">
+            <p className="text-sm text-gray-300 mt-1">
               {song?.Description}
             </p>
           </Link>
@@ -73,7 +73,7 @@ const TopPlay = () => {
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Episodes</h2>
           <Link to="/Top-episodes">
-            <p className="text-gray-300 text-base cursor-pointer">Voir Plus</p>
+            <p className="text-gray-300 text-sm cursor-pointer">Voir Plus</p>
           </Link>
         </div>
 
@@ -97,7 +97,7 @@ const TopPlay = () => {
           <h2 className="text-white font-bold text-2xl">Top Journalistes</h2>
           <Link to="/">
           {/* <Link to="/Top-journalistes"> */}
-            <p className="text-gray-300 text-base cursor-pointer">Voir Plus</p>
+            <p className="text-gray-300 text-sm cursor-pointer">Voir Plus</p>
           </Link>
         </div>
 

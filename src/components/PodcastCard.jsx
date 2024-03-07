@@ -4,24 +4,26 @@ import { useDispatch } from 'react-redux';
 
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
+import { FaPlay } from 'react-icons/fa';
 
 const PodcastCard = ({ podcast, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
 
-//   const handlePauseClick = () => {
-//     dispatch(playPause(false));
-//   };
+  //   const handlePauseClick = () => {
+  //     dispatch(playPause(false));
+  //   };
 
-//   const handlePlayClick = () => {
-//     dispatch(setActiveSong({ song, data, i }));
-//     dispatch(playPause(true));
-//   };
+  //   const handlePlayClick = () => {
+  //     dispatch(setActiveSong({ song, data, i }));
+  //     dispatch(playPause(true));
+  //   };
 
-    // console.log(podcast);
+  // console.log(podcast);
 
   return (
-    <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
-      <div className="relative w-full h-56 group">
+    <div className="flex flex-col w-[100%] md:w-[45%] xl:w-[47%] p-2 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg transition-all duration-300 cursor-pointer filter grayscale-0  hover:bg-black"
+    >
+      <div className="relative w-full h-60 group shadow-xl ">
         {/* <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.Titre === song.Titre ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
           <PlayPause
             isPlaying={isPlaying}
@@ -31,20 +33,29 @@ const PodcastCard = ({ podcast, isPlaying, activeSong, data, i }) => {
             handlePlay={handlePlayClick}
           />
         </div> */}
-        <img alt="song_img" src={podcast?.Photo?.url} className="w-full h-full rounded-lg" />
+
+        <img alt="song_img" src={podcast?.Photo?.url} className="w-full h-full rounded-lg object-cover" />
       </div>
 
-      <div className="mt-4 flex flex-col">
-        <p className="font-semibold text-lg text-white truncate">
-          <Link to={`/Podcast/${podcast.objectId}`}>
+      <div className="mt-4 flex flex-row justify-between px-4">
+        <div className="flex flex-col">
+          <p className="font-semibold text-lg text-white">
             {podcast?.Titre}
-          </Link>
-        </p>
-        <p className="text-sm truncate text-gray-300 mt-1">
-          <Link to={podcast.artists ? `/Journalistes/${podcast?.artists[0]?.adamid}` : '/Top-journalistes'}>
-            {podcast?.Description}
-          </Link>
-        </p>
+          </p>
+          <p className="text-sm truncate text-gray-300 md:text-thin mt-1 max-w-1">
+            {podcast?.Description.slice(0, 15)}...
+          </p>
+        </div>
+
+
+        <Link
+          className='rounded-lg active:bg-orange-600'
+          to={`/Podcast/${podcast.objectId}`}
+        >
+          <button type="button" class="bg-gradient-to-r from-yellow-500 to-slate-500 hover:from-pink-500 hover:to-yellow-500 p-4 rounded-lg">
+            <FaPlay color='#fff' />
+          </button>
+        </Link>
       </div>
     </div>
   );

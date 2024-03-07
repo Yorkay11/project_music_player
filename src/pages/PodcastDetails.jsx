@@ -39,10 +39,10 @@ const PodcastDetails = () => {
                 <div className="mt-5">
                     {podcastData
                         ? (
-                            <p className="text-gray-400 text-base my-1">{podcastData?.results[0]?.Description}</p>
+                            <p className="text-gray-400 text-sm my-1">{podcastData?.results[0]?.Description}</p>
                         )
                         : (
-                            <p className="text-gray-400 text-base my-1">Pas de Description!</p>
+                            <p className="text-gray-400 text-sm my-1">Pas de Description!</p>
                         )}
                 </div>
             </div>
