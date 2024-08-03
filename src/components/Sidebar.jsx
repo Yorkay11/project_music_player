@@ -49,7 +49,7 @@ const Sidebar = () => {
       </div>
 
       <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483D8B] backdrop-blur-lg z-10 p-6 pt-[8vh] md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
-        <img src={logo} alt="logo" className="w-14 h-14 object-stretch rounded-full justify-center" />
+        <img src={logo} alt="logo" className="w-14 h-14 object-cover rounded-full justify-center" />
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
       </div>
     </>
