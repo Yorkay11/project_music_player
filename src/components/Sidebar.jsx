@@ -40,7 +40,7 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile sidebar */}
-      <div className="absolute md:hidden block top-6 right-3 sm:mt-[5vh]">
+      <div className="absolute md:hidden block top-6 right-3 mt-[4rem] md:mt-0">
         {!mobileMenuOpen ? (
           <HiOutlineMenu className="w-6 h-6 mr-2 text-white" onClick={() => setMobileMenuOpen(true)} />
         ) : (

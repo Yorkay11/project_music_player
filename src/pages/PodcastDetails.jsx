@@ -83,7 +83,7 @@ const PodcastDetails = () => {
             <div className="mb-10">
                 <h3 className="text-white text-2xl font-bold">Episodes:</h3>
 
-                <div className="flex flex-wrap sm:justify-start justify-center gap-8 mt-5">
+                <div className="flex flex-wrap sm:justify-start justify-center gap-4 mt-5">
                     {podcastEpisodeData && podcastEpisodeData.results?.map((song, i) => {
                         return (
                             <SongCard
